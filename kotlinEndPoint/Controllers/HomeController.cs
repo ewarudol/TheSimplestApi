@@ -93,10 +93,10 @@ namespace kotlinEndPoint.Controllers {
                 string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"UPDATE {tabName} SET someval = {someval} WHERE name = '{name}' ; ", dbConnection);
+                ExecuteQueryNoResult($"UPDATE {tabName} SET someval = '{someval}' WHERE name = '{name}' ; ", dbConnection);
                 dbConnection.Cancel();
 
-                return Content("Yeah, new points arrived!");
+                return Content("Tasty, new value arrived!");
             }
             catch {
                 return Content("Oh no! Something went wrong.");
