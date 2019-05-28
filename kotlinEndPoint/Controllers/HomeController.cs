@@ -58,7 +58,7 @@ namespace kotlinEndPoint.Controllers {
         }
 
         public ActionResult CreateDataBase(string dbName, string tabName) {
-          //  try {
+            try {
                 string path = Server.MapPath($"~/bin/{dbName}");
                 CreateDb("ewadb", path);
 
@@ -67,29 +67,29 @@ namespace kotlinEndPoint.Controllers {
                 dbConnection.Cancel();
 
                 return Content("DB created. Look at you, you're so freaking amazing.");
-          //  }
-           // catch {
-           //     return Content("Oh no! Something went wrong.");
-           // }
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
         }
 
-        public ActionResult AddUser(string dbName, string tabName, string name, string someval) {
-           // try {
+        public ActionResult AddUser(string dbName, string tabName, string name, string pass) {
+            try {
                 string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"insert into {tabName} (name, pass, someval) values('{name}', '{someval}', '0')", dbConnection);
+                ExecuteQueryNoResult($"insert into {tabName} (name, pass, someval) values('{name}', '{pass}', '0')", dbConnection);
                 dbConnection.Cancel();
 
                 return Content("OMG, new person in your fantastic app!");
-           // }
-           // catch {
-          //      return Content("Oh no! Something went wrong.");
-          //  }
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
         }
 
         public ActionResult UpdatePoints(string dbName, string tabName, string name, string someval) {
-           // try {
+            try {
                 string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
@@ -97,14 +97,14 @@ namespace kotlinEndPoint.Controllers {
                 dbConnection.Cancel();
 
                 return Content("Yeah, new points arrived!");
-          //  }
-          //  catch {
-          //      return Content("Oh no! Something went wrong.");
-          //  }
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
         }
 
         public ActionResult GetTableJson(string dbName, string tabName) {
-           // try {
+            try {
                 string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
@@ -113,10 +113,10 @@ namespace kotlinEndPoint.Controllers {
                 dbConnection.Cancel();
 
                 return Json(data, JsonRequestBehavior.AllowGet);
-          //  }
-          //  catch {
-          //      return Content("Oh no! Something went wrong.");
-         //   }
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
         }
     }
 }
