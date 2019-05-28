@@ -63,7 +63,7 @@ namespace kotlinEndPoint.Controllers {
                 CreateDb("ewadb", path);
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"CREATE TABLE {tabName} (name VARCHAR(50), pass VARCHAR(50), someval VARCHAR(50))", dbConnection);
+                ExecuteQueryNoResult($"CREATE TABLE {tabName} (name VARCHAR(50), pass VARCHAR(50), someval VARCHAR(500))", dbConnection);
                 dbConnection.Cancel();
 
                 return Content("DB created. Look at you, you're so freaking amazing.");
