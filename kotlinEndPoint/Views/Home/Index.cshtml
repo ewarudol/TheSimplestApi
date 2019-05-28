@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Dummy DB</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Stworzenie bazy i tabeli</h2>
+        <p>
+            /Home/CreateDataBase?dbName=MOJABAZA&tabName=MOJATABELA
+        </p>
+    </div>
+    <div class="col-md-12">
+        <h2>Dodawanie usera</h2>
+        <p> /Home/AddUser?dbName=MOJABAZA&tabName=MOJATABELA&name=MOJEIMIE&pass=MOJEHASLO </p>
+    </div>
+    <div class="col-md-12">
+        <h2>Json z tabelą</h2>
+        <p> /Home/GetTableJson?dbName=MOJABAZA&tabName=MOJATABELA </p>
+    </div>
+    <div class="col-md-12">
+        <h2>Aktualizacja punktów</h2>
+        <p> /Home/UpdatePoints?dbName=MOJABAZA&tabName=MOJATABELA&name=MOJEIMIE&points=20 </p>
+    </div>
+    <div class="col-md-12">
+        <h2>Jak wygląda tabela?</h2>
+        <p> CREATE TABLE mojatabela (name VARCHAR(50), pass VARCHAR(50), points INT) </p>
+    </div>
+    <div class="col-md-12">
+        <h2>Czy to bezpieczne?</h2>
+        <p>Absolutnie nie, proszę nie śmiecić. A i nie ma walidacji, zrób to po stronie apki. </p>
+    </div>
+    <div class="col-md-12">
+        <h2>FAQ and feedback</h2>
+        <p>Jak się nie podoba lub nie działa to trudno.</p>
+    </div>
+</div>
