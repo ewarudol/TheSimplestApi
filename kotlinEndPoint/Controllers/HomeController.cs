@@ -59,11 +59,11 @@ namespace kotlinEndPoint.Controllers {
 
         public ActionResult CreateDataBase(string dbName, string tabName) {
             try {
-                string path = Server.MapPath($"~/DataBase/{dbName}");
+                string path = Server.MapPath($"~/bin/{dbName}");
                 CreateDb("ewadb", path);
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"CREATE TABLE {tabName} (name VARCHAR(50), pass VARCHAR(50), points INT)", dbConnection);
+                ExecuteQueryNoResult($"CREATE TABLE {tabName} (name VARCHAR(50), pass VARCHAR(50), someval VARCHAR(50))", dbConnection);
                 dbConnection.Cancel();
 
                 return Content("DB created. Look at you, you're so freaking amazing.");
@@ -73,12 +73,12 @@ namespace kotlinEndPoint.Controllers {
             }
         }
 
-        public ActionResult AddUser(string dbName, string tabName, string name, string pass) {
+        public ActionResult AddUser(string dbName, string tabName, string name, string someval) {
             try {
-                string path = Server.MapPath($"~/DataBase/{dbName}");
+                string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"insert into {tabName} (name, pass, points) values('{name}', '{pass}', 0)", dbConnection);
+                ExecuteQueryNoResult($"insert into {tabName} (name, pass, someval) values('{name}', '{someval}', '0')", dbConnection);
                 dbConnection.Cancel();
 
                 return Content("OMG, new person in your fantastic app!");
@@ -88,12 +88,12 @@ namespace kotlinEndPoint.Controllers {
             }
         }
 
-        public ActionResult UpdatePoints(string dbName, string tabName, string name, int points) {
+        public ActionResult UpdatePoints(string dbName, string tabName, string name, string someval) {
             try {
-                string path = Server.MapPath($"~/DataBase/{dbName}");
+                string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
-                ExecuteQueryNoResult($"UPDATE {tabName} SET points = {points} WHERE name = '{name}' ; ", dbConnection);
+                ExecuteQueryNoResult($"UPDATE {tabName} SET someval = {someval} WHERE name = '{name}' ; ", dbConnection);
                 dbConnection.Cancel();
 
                 return Content("Yeah, new points arrived!");
@@ -105,7 +105,7 @@ namespace kotlinEndPoint.Controllers {
 
         public ActionResult GetTableJson(string dbName, string tabName) {
             try {
-                string path = Server.MapPath($"~/DataBase/{dbName}");
+                string path = Server.MapPath($"~/bin/{dbName}");
 
                 SQLiteConnection dbConnection = OpenConnection(path);
                 List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
