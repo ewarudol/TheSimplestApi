@@ -118,5 +118,20 @@ namespace kotlinEndPoint.Controllers {
                 return Content("Oh no! Something went wrong.");
             }
         }
+
+        public ActionResult CreateTable(string dbName, string tabName) {
+            try {
+                string path = Server.MapPath($"~/bin/{dbName}");
+
+                SQLiteConnection dbConnection = OpenConnection(path);
+                ExecuteQueryNoResult($"CREATE TABLE {tabName} (name VARCHAR(50), pass VARCHAR(50), someval VARCHAR(500))", dbConnection);
+                dbConnection.Cancel();
+
+                return Content("Table created. Look at you, you're so freaking amazing.");
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
+        }
     }
 }
