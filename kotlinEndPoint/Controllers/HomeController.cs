@@ -88,6 +88,21 @@ namespace kotlinEndPoint.Controllers {
             }
         }
 
+        public ActionResult AddRow(string dbName, string tabName, string name, string pass, string someval) {
+            try {
+                string path = Server.MapPath($"~/bin/{dbName}");
+
+                SQLiteConnection dbConnection = OpenConnection(path);
+                ExecuteQueryNoResult($"insert into {tabName} (name, pass, someval) values('{name}', '{pass}', '{someval}')", dbConnection);
+                dbConnection.Cancel();
+
+                return Content("OMG, new sth in your fantastic app!");
+            }
+            catch {
+                return Content("Oh no! Something went wrong.");
+            }
+        }
+
         public ActionResult UpdatePoints(string dbName, string tabName, string name, string someval) {
             try {
                 string path = Server.MapPath($"~/bin/{dbName}");
